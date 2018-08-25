@@ -1,0 +1,9 @@
+
+<h1>Produtos</h1>
+<button (click)="getProdutos()">Buscar Produtos</button>
+<br/>
+<br/>
+<ul *ngIf="produtos">
+  <li *ngFor="let produto of produtos">{{produto}}</li>
+</ul>
+
