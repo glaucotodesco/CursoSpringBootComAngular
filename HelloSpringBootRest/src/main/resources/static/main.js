@@ -118,7 +118,7 @@ var AppModule = /** @class */ (function () {
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"]
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
@@ -149,7 +149,7 @@ module.exports = "\r\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Produtos</h1>\n<button (click)=\"getProdutos()\">Buscar Produtos</button>\n<br/>\n<br/>\n<div *ngFor=\"let produto of produtos\">\n   <h3>{{produto.descricao}}</h3>\n    <p>Id:{{produto.id}} </p>\n    <p>Preço:{{produto.preco}} </p>\n</div>\n\n"
+module.exports = "<button (click)=\"getProdutos()\" type=\"button\" class=\"btn btn-primary\">Buscar Produtos</button>\n<br/>\n<br/>\n<br/>\n<h2>Cadastro do Produtos</h2>\n<table class=\"table\">\n  <thead>\n    <tr>\n      <th scope=\"col\">Id</th>\n      <th scope=\"col\">Descrição</th>\n      <th scope=\"col\">Preço</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let produto of produtos\">\n      <td>{{produto.id}}</td>\n      <td>{{produto.descricao}}</td>\n      <td>{{produto.preco}} </td>\n    </tr>\n\n  </tbody>\n</table>\n"
 
 /***/ }),
 
