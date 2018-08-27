@@ -95,12 +95,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _lista_produto_lista_produto_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lista-produto/lista-produto.component */ "./src/app/lista-produto/lista-produto.component.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -115,7 +117,8 @@ var AppModule = /** @class */ (function () {
                 _lista_produto_lista_produto_component__WEBPACK_IMPORTED_MODULE_3__["ListaProdutoComponent"]
             ],
             imports: [
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"]
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"]
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
@@ -135,7 +138,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "ul { display:table; margin:0 auto;}\r\n"
+module.exports = "\r\n"
 
 /***/ }),
 
@@ -146,7 +149,7 @@ module.exports = "ul { display:table; margin:0 auto;}\r\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<h1>Produtos</h1>\n<button (click)=\"getProdutos()\">Buscar Produtos</button>\n<br/>\n<br/>\n<ul *ngIf=\"produtos\">\n  <li *ngFor=\"let produto of produtos\">{{produto}}</li>\n</ul>\n\n"
+module.exports = "<h1>Produtos</h1>\n<button (click)=\"getProdutos()\">Buscar Produtos</button>\n<br/>\n<br/>\n<div *ngFor=\"let produto of produtos\">\n   <h3>{{produto.descricao}}</h3>\n    <p>Id:{{produto.id}} </p>\n    <p>Preço:{{produto.preco}} </p>\n</div>\n\n"
 
 /***/ }),
 
@@ -161,6 +164,7 @@ module.exports = "\n<h1>Produtos</h1>\n<button (click)=\"getProdutos()\">Buscar 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListaProdutoComponent", function() { return ListaProdutoComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -171,13 +175,17 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var ListaProdutoComponent = /** @class */ (function () {
-    function ListaProdutoComponent() {
+    function ListaProdutoComponent(http) {
+        this.http = http;
     }
     ListaProdutoComponent.prototype.ngOnInit = function () {
     };
     ListaProdutoComponent.prototype.getProdutos = function () {
-        this.produtos = ['Produto 1', 'Produto 2', 'Produto 3'];
+        var _this = this;
+        this.http.get('http://localhost:8080/').
+            subscribe(function (produtos) { return _this.produtos = produtos; });
     };
     ListaProdutoComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -185,7 +193,7 @@ var ListaProdutoComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./lista-produto.component.html */ "./src/app/lista-produto/lista-produto.component.html"),
             styles: [__webpack_require__(/*! ./lista-produto.component.css */ "./src/app/lista-produto/lista-produto.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], ListaProdutoComponent);
     return ListaProdutoComponent;
 }());
